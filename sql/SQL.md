@@ -56,7 +56,7 @@ ON c.id = m.country_id
 GROUP BY country;
 ```
 ### Calculate percentage of matches tied with `CASE WHEN`
-Unrounded
+- Unrounded
 ```sql
 SELECT 
 	c.name AS country,
@@ -72,7 +72,7 @@ LEFT JOIN matches AS m
 ON c.id = m.country_id
 GROUP BY country;
 ```
-Rounded: 2 decimal points
+- Rounded: 2 decimal points
 ```sql
 SELECT 
 	c.name AS country,
