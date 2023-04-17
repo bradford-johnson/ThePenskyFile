@@ -8,7 +8,7 @@ Resources
 
 Code
 ---
-- Counting with `CASE WHEN`, number of games for each season by country
+### Counting with `CASE WHEN`, number of games for each season by country
 ```sql
 SELECT 
 	c.name AS country,
@@ -22,7 +22,7 @@ ON c.id = m.country_id
 -- Group by country name alias
 GROUP BY country;
 ```
-- Counting: CASE WHEN with multiple conditions
+### Counting: CASE WHEN with multiple conditions
 ```sql
 SELECT 
 	c.name AS country,
@@ -39,7 +39,7 @@ ON c.id = m.country_id
 -- Group by country name alias
 GROUP BY country;
 ```
-- Count each outcome by country: home win, away win, tie...
+### Count each outcome by country: home win, away win, tie...
 ```sql
 SELECT 
     c.name AS country,
