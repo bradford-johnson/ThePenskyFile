@@ -22,7 +22,7 @@ ON c.id = m.country_id
 -- Group by country name alias
 GROUP BY country;
 ```
-### Counting: CASE WHEN with multiple conditions
+### Counting: `CASE WHEN` with multiple conditions
 ```sql
 SELECT 
 	c.name AS country,
