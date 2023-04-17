@@ -11,11 +11,17 @@ Tools
 
 Visualizing Data
 ---
-| Looking for Color Palettes?                                                                          |
-|------------------------------------------------------------------------------------------------------|
-| [Data Color Picker](https://www.learnui.design/tools/data-color-picker.html#palette)                 |
-| [paletteer](https://pmassicotte.github.io/paletteer_gallery/#continuous-palettes)                    |
-| [Viz Palette](https://projects.susielu.com/viz-palette)                                              |
-| [ColorSpace](https://mycolor.space/)                                                                 |
+| Looking for Color Palettes?                                                                          | What Visual to use?                                                                               |
+|------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| [Data Color Picker](https://www.learnui.design/tools/data-color-picker.html#palette)                 | [Visualization Universe](http://visualizationuniverse.com/charts/)                                |
+| [paletteer](https://pmassicotte.github.io/paletteer_gallery/#continuous-palettes)                    | [Material Design](https://m2.material.io/design/communication/data-visualization.html#principles) |
+| [Viz Palette](https://projects.susielu.com/viz-palette)                                              | [Visual Flowchart](https://extremepresentation.typepad.com/files/choosing-a-good-chart-09.pdf)    |
+| [ColorSpace](https://mycolor.space/)                                                                 | [Data Viz Project](https://datavizproject.com/)                                                   |
 | [Color Thief](https://lokeshdhakar.com/projects/color-thief/)                                        |
 | [Chroma.js](https://gka.github.io/palettes/#/9\|s\|00429d,96ffea,ffffe0\|ffffe0,ff005e,93003a\|1\|1) |
+
+
+
+
+
+
