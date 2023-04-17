@@ -8,7 +8,7 @@ Resources
 
 Code
 ---
-Counting with `CASE WHEN`
+Counting with `CASE WHEN`, number of games for each season by country
 ```sql
 SELECT 
 	c.name AS country,
