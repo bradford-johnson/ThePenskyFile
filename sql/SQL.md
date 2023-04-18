@@ -114,7 +114,7 @@ WHERE team_api_id IN
        FROM match
        WHERE home_goal >= 8);
 ```
-### Subquery in `WHERE` clause
+### Joining Subqueries in `FROM`
 ```sql
 SELECT
 	-- Select country name and the count match IDs
