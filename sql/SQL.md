@@ -255,3 +255,21 @@ SELECT
 FROM match
 GROUP BY season;
 ```
+```sql
+-- Count match ids
+SELECT
+    country_id,
+    season,
+    COUNT(id) AS matches
+-- Set up and alias the subquery
+FROM 
+	(SELECT
+    	country_id,
+    	season,
+    	id
+	FROM match
+	WHERE home_goal >= 5 OR away_goal >= 5)
+    AS subquery
+-- Group by country_id and season
+GROUP BY country_id, season;
+```
