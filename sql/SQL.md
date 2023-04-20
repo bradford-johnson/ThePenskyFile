@@ -273,6 +273,7 @@ FROM
 -- Group by country_id and season
 GROUP BY country_id, season;
 ```
+### Nest a subquery in `FROM`
 ```sql
 SELECT
 	c.name AS country,
