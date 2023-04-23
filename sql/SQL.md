@@ -295,6 +295,19 @@ GROUP BY country;
 ```
 ### Common Table Expressions (CTEs)
 ```sql
+-- Name the CTE
+WITH cte AS  
+-- Write a regular SQL statement
+-- inside parentheses 
+  (
+    SELECT col1, col2
+    FROM table)
+-- "Feed" the CTE into a second query
+SELECT
+  AVG(col1) AS avg_col
+FROM cte;
+```
+```sql
 -- Set up your CTE
 WITH match_list AS (
     SELECT 
