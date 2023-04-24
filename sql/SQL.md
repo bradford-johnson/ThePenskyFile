@@ -408,3 +408,15 @@ SELECT
      m.away_goal
 FROM match AS m;
 ```
+### Get team names with CTEs
+```sql
+-- Declare the home CTE
+WITH home AS (
+	SELECT m.id, t.team_long_name AS hometeam
+	FROM match AS m
+	LEFT JOIN team AS t 
+	ON m.hometeam_id = t.team_api_id)
+-- Select everything from home
+SELECT *
+FROM home;
+```
