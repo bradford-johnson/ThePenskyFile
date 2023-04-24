@@ -364,3 +364,31 @@ FROM league AS l
 LEFT JOIN match_list ON l.id = match_list.country_id
 GROUP BY l.name;
 ```
+### Team name subqueries
+```sql
+SELECT
+	m.date,
+    -- Get the home and away team names
+    home.hometeam,
+    away.awayteam,
+    m.home_goal,
+    m.away_goal
+FROM match AS m
+
+-- Join the home subquery to the match table
+LEFT JOIN (
+  SELECT match.id, team.team_long_name AS hometeam
+  FROM match
+  LEFT JOIN team
+  ON match.hometeam_id = team.team_api_id) AS home
+ON  home.id = m.id
+
+-- Join the away subquery to the match table
+LEFT JOIN (
+  SELECT match.id, team.team_long_name AS awayteam
+  FROM match
+  LEFT JOIN team
+  -- Get the away team ID in the subquery
+  ON match.awayteam_id = team.team_api_id) AS away
+ON away.id = m.id;
+```
