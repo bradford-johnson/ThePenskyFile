@@ -150,3 +150,95 @@ GROUP BY
 |-----|------------|--------------------------------------|----------------|-----------------------|----------------|----------------|----------------|------------|
 |   1 | Blue Jays  | cc86d4d3-1618-415e-b7fc-a303f3b8dd6f | Marcus Stroman | Slider                |             80 |             89 |            339 |         32 |
 |     |            |                                      |                |                       |                |                |                |            |
+
+`baseball_at_bats_by_batter_and_char`
+---
+```sql
+WITH
+  away_batters AS(
+  SELECT
+    awayTeamName AS team,
+    hitterId,
+    hitterBatHand,
+    pitchTypeDescription,
+    outcomeDescription,
+    COUNT(DISTINCT gameId) AS n_games,
+    COUNT(pitchType) AS n_occur,
+    AVG(pitchSpeed) AS avg_pitch_speed
+  FROM
+    `bigquery-public-data.baseball.games_wide`
+  WHERE
+    atBatEventType = 'PITCH'
+    AND pitchSpeed > 0
+    AND inningHalf = 'TOP'
+  GROUP BY
+    team,
+    hitterId,
+    hitterBatHand,
+    pitchTypeDescription,
+    outcomeDescription ),
+  home_batters AS(
+  SELECT
+    homeTeamName AS team,
+    hitterId,
+    hitterBatHand,
+    pitchTypeDescription,
+    outcomeDescription,
+    COUNT(DISTINCT gameId) AS n_games,
+    COUNT(pitchType) AS n_occur,
+    AVG(pitchSpeed) AS avg_pitch_speed
+  FROM
+    `bigquery-public-data.baseball.games_wide`
+  WHERE
+    atBatEventType = 'PITCH'
+    AND pitchSpeed > 0
+    AND inningHalf = 'BOT'
+  GROUP BY
+    team,
+    hitterId,
+    hitterBatHand,
+    pitchTypeDescription,
+    outcomeDescription ),
+  names AS(
+  SELECT
+    DISTINCT hitterId,
+    CONCAT(hitterFirstName, " ", hitterLastName) AS h_name
+  FROM
+    `bigquery-public-data.baseball.games_wide` )
+SELECT
+b.team AS team_name,
+b.hitterId,
+n.h_name,
+b.hitterBatHand,
+b.pitchTypeDescription,
+b.outcomeDescription,
+SUM(b.n_games) AS num_games,
+sum(b.n_occur) AS n_occur,
+AVG(b.avg_pitch_speed) AS avg_pitch_speed
+FROM (
+  SELECT
+    *
+  FROM
+    away_batters
+  UNION ALL
+  SELECT
+    *
+  FROM
+    home_batters ) AS b
+INNER JOIN
+  names AS n
+ON
+  b.hitterId = n.hitterId
+  GROUP BY
+  team_name,
+  b.hitterId,
+  n.h_name,
+  b.hitterBatHand,
+  b.pitchTypeDescription,
+  b.outcomeDescription
+```
+## Output:
+| Row |  team_name |  hitterId                            |  h_name      |  hitterBatHand |  pitchTypeDescription |  outcomeDescription |  num_games |  n_occur |  avg_pitch_speed |
+|-----|------------|--------------------------------------|--------------|----------------|-----------------------|---------------------|------------|----------|------------------|
+|   1 | Marlins    | 933a0bc9-26c0-478e-982c-01fd8ffe0614 | Martin Prado | R              | Fastball              | Strike Looking      |        143 |      393 |    91.5761345852 |
+|     |            |                                      |              |                |                       |                     |            |          |                  |
