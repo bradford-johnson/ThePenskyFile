@@ -1,4 +1,5 @@
 # `SQL`
+### [query repo](https://github.com/bradfordjohnson/ThePenskyFile/blob/main/sql/queries.md)
 
 Resources
 ---
@@ -6,7 +7,7 @@ Resources
 |---------------------------------------------------------------------------------------------------|
 | [SQL Style Guide](https://www.sqlstyle.guide/)                                                    |
 
-Code
+Practice Code
 ---
 ### Counting with `CASE WHEN`, number of games for each season by country
 ```sql
