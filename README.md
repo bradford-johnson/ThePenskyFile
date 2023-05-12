@@ -8,6 +8,7 @@ Tools
 | [R](https://github.com/bradfordjohnson/ThePenskyFile/blob/main/r/R.md)                |
 | [Python](https://github.com/bradfordjohnson/ThePenskyFile/blob/main/python/Python.md) |
 | [SQL](https://github.com/bradfordjohnson/ThePenskyFile/blob/main/sql/SQL.md)          |
+| [SQL](https://github.com/bradfordjohnson/ThePenskyFile/blob/main/sql/SQL.md)          |
 
 Visualizing Data
 ---
