@@ -8,6 +8,7 @@ Resources
 | [ggnot2](https://www.youtube.com/@ggnot2)                                                         | [Modern Data Science with R](https://mdsr-book.github.io/mdsr2e/)                                 |
 | [R Programming 101](https://www.youtube.com/@RProgramming101)                                     | [ggplot2](https://ggplot2-book.org/index.html)                                                    |
 |                                                                                                   | [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html)                   |
+|                                                                                                   | [tidyverse style guide](https://style.tidyverse.org/)                                             |
 
 Packages
 ---
