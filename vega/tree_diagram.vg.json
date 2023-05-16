@@ -1,0 +1,313 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "An example of Cartesian layouts for a node-link diagram of hierarchical data.",
+  "width": 600,
+  "height": 600,
+  "padding": 5,
+  "signals": [
+    {"name": "labels", "value": true, "bind": {"input": "checkbox"}},
+    {
+      "name": "layout",
+      "value": "tidy",
+      "bind": {"input": "radio", "options": ["tidy", "cluster"]}
+    },
+    {
+      "name": "links",
+      "value": "diagonal",
+      "bind": {
+        "input": "select",
+        "options": ["line", "curve", "diagonal", "orthogonal"]
+      }
+    },
+    {"name": "separation", "value": false, "bind": {"input": "checkbox"}}
+  ],
+  "data": [
+    {
+      "name": "tree",
+      "values": [
+        {
+          "id": 1,
+          "name": "solutions",
+          "type": "category",
+          "url": "https://www.google.com/maps",
+          "y": 268.42105263157896,
+          "x": 0,
+          "depth": 0,
+          "children": 1
+        },
+        {
+          "id": 2,
+          "name": "projects",
+          "type": "project",
+          "url": "https://www.google.com/maps",
+          "parent": 1,
+          "y": 268.42105263157896,
+          "x": 125,
+          "depth": 1,
+          "children": 2
+        },
+        {
+          "id": 3,
+          "name": "project 1",
+          "type": "project",
+          "url": "https://www.google.com/maps",
+          "parent": 2,
+          "y": 126.3157894736842,
+          "x": 250,
+          "depth": 2,
+          "children": 4
+        },
+        {
+          "id": 4,
+          "name": "dashboard",
+          "type": "dashboard",
+          "url": "https://www.google.com/maps",
+          "parent": 3,
+          "size": 3938,
+          "y": 31.57894736842105,
+          "x": 375,
+          "depth": 3,
+          "children": 0
+        },
+        {
+          "id": 5,
+          "name": "script 1",
+          "type": "script",
+          "url": "https://www.google.com/maps",
+          "parent": 3,
+          "size": 3812,
+          "y": 94.73684210526315,
+          "x": 375,
+          "depth": 3,
+          "children": 0
+        },
+        {
+          "id": 6,
+          "name": "script 2",
+          "type": "script",
+          "url": "https://www.google.com/maps",
+          "parent": 3,
+          "size": 6714,
+          "y": 157.89473684210526,
+          "x": 375,
+          "depth": 3,
+          "children": 0
+        },
+        {
+          "id": 7,
+          "name": "database",
+          "type": "database",
+          "url": "https://www.google.com/maps",
+          "parent": 3,
+          "size": 743,
+          "y": 221.05263157894737,
+          "x": 375,
+          "depth": 3,
+          "children": 0
+        },
+        {
+          "id": 8,
+          "name": "project 2",
+          "type": "project",
+          "url": "https://www.google.com/maps",
+          "parent": 2,
+          "y": 410.52631578947364,
+          "x": 250,
+          "depth": 2,
+          "children": 5
+        },
+        {
+          "id": 9,
+          "name": "dashboard",
+          "type": "dashboard",
+          "url": "https://www.google.com/maps",
+          "parent": 8,
+          "size": 3534,
+          "y": 284.2105263157895,
+          "x": 375,
+          "depth": 3,
+          "children": 0
+        },
+        {
+          "id": 10,
+          "name": "script 1",
+          "type": "script",
+          "url": "https://www.google.com/maps",
+          "parent": 8,
+          "size": 5731,
+          "y": 347.36842105263156,
+          "x": 375,
+          "depth": 3,
+          "children": 0
+        },
+        {
+          "id": 11,
+          "name": "script 2",
+          "type": "script",
+          "url": "https://www.google.com/maps",
+          "parent": 8,
+          "size": 7840,
+          "y": 410.52631578947364,
+          "x": 375,
+          "depth": 3,
+          "children": 1
+        },
+        {
+          "id": 12,
+          "name": "database 1",
+          "type": "database",
+          "url": "https://www.google.com/maps",
+          "parent": 8,
+          "size": 5914,
+          "y": 473.6842105263158,
+          "x": 375,
+          "depth": 3,
+          "children": 0
+        },
+        {
+          "id": 13,
+          "name": "database 2",
+          "type": "database",
+          "url": "https://www.google.com/maps",
+          "parent": 8,
+          "size": 3416,
+          "y": 536.8421052631579,
+          "x": 375,
+          "depth": 3,
+          "children": 2
+        },
+        {
+          "id": 14,
+          "name": "api",
+          "type": "api",
+          "url": "https://www.google.com/maps",
+          "parent": 11,
+          "size": 5914,
+          "y": 410.52631578947364,
+          "x": 500,
+          "depth": 4,
+          "children": 0
+        },
+        {
+          "id": 15,
+          "name": "table 1",
+          "type": "table",
+          "url": "https://www.google.com/maps",
+          "parent": 13,
+          "size": 5914,
+          "y": 505.2631578947368,
+          "x": 500,
+          "depth": 4,
+          "children": 0
+        },
+        {
+          "id": 16,
+          "name": "table 2",
+          "type": "table",
+          "url": "https://www.google.com/maps",
+          "parent": 13,
+          "size": 5914,
+          "y": 568.421052631579,
+          "x": 500,
+          "depth": 4,
+          "children": 0
+        }
+      ],
+      "transform": [
+        {"type": "stratify", "key": "id", "parentKey": "parent"},
+        {
+          "type": "tree",
+          "method": {"signal": "layout"},
+          "size": [{"signal": "height"}, {"signal": "width - 100"}],
+          "separation": {"signal": "separation"},
+          "as": ["y", "x", "depth", "children"]
+        }
+      ]
+    },
+    {
+      "name": "links",
+      "source": "tree",
+      "transform": [
+        {"type": "treelinks"},
+        {
+          "type": "linkpath",
+          "orient": "horizontal",
+          "shape": {"signal": "links"}
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {"data": "tree", "field": "type"},
+      "range": [
+        "#3182bd",
+        "#6baed6",
+        "#9ecae1",
+        "#c6dbef",
+        "#e6550d",
+        "#fd8d3c",
+        "#fdae6b",
+        "#fdd0a2",
+        "#31a354",
+        "#74c476",
+        "#a1d99b",
+        "#c7e9c0",
+        "#756bb1",
+        "#9e9ac8",
+        "#bcbddc",
+        "#dadaeb",
+        "#636363",
+        "#969696",
+        "#bdbdbd",
+        "#d9d9d9"
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "path",
+      "from": {"data": "links"},
+      "encode": {
+        "update": {"path": {"field": "path"}, "stroke": {"value": "#ccc"}}
+      }
+    },
+    {
+      "type": "symbol",
+      "from": {"data": "tree"},
+      "encode": {
+        "enter": {
+          "size": {"value": 100},
+          "fill": {"scale": "color", "field": "type"}
+        },
+        "update": {
+          "tooltip": [{"field": "type", "type": "ordinal"}],
+          "href": {"field": "url", "type": "nominal"},
+          "x": {"field": "x"},
+          "y": {"field": "y"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {"data": "tree"},
+      "encode": {
+        "enter": {
+          "text": {"field": "name"},
+          "fontSize": {"value": 9},
+          "baseline": {"value": "middle"}
+        },
+        "update": {
+          "x": {"field": "x"},
+          "y": {"field": "y"},
+          "dx": {"signal": "datum.children ? -7 : 7"},
+          "align": {"signal": "datum.children ? 'right' : 'left'"},
+          "opacity": {"signal": "labels ? 1 : 0"}
+        }
+      }
+    }
+  ],
+  "config": {}
+}
