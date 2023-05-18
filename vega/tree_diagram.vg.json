@@ -1,248 +1,40 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "An example of Cartesian layouts for a node-link diagram of hierarchical data.",
-  "width": 600,
-  "height": 600,
-  "padding": 5,
-
-  "signals": [
-    {
-      "name": "labels", "value": true,
-      "bind": {"input": "checkbox"}
-    },
-    {
-      "name": "layout", "value": "tidy",
-      "bind": {"input": "radio", "options": ["tidy", "cluster"]}
-    },
-    {
-      "name": "links", "value": "diagonal",
-      "bind": {
-        "input": "select",
-        "options": ["line", "curve", "diagonal", "orthogonal"]
-      }
-    },
-    {
-      "name": "separation", "value": false,
-      "bind": {"input": "checkbox"}
-    }
-  ],
-
   "data": [
     {
-      "name": "tree",
-      "values": [
-    {
-      "id": 1,
-      "name": "solutions",
-      "type": "category",
-      "url": "https://www.google.com/maps"
+      "name": "source",
+      "url": "https://raw.githubusercontent.com/bradfordjohnson/example-data/main/data/tree_data_unstr.csv",
+      "format": { "type": "csv" }
     },
     {
-      "id": 2,
-      "name": "projects",
-      "type": "project",
-      "url": "https://www.google.com/maps",
-      "parent": 1
-    },
-    {
-      "id": 3,
-      "name": "project 1",
-      "type": "project",
-      "url": "https://www.google.com/maps",
-      "parent": 2
-    },
-    {
-      "id": 4,
-      "name": "dashboard",
-      "type": "dashboard",
-      "url": "https://www.google.com/maps",
-      "parent": 3,
-      "size": 3938
-    },
-    {
-      "id": 5,
-      "name": "script 1",
-      "type": "script",
-      "url": "https://www.google.com/maps",
-      "parent": 3,
-      "size": 3812
-    },
-    {
-      "id": 6,
-      "name": "script 2",
-      "type": "script",
-      "url": "https://www.google.com/maps",
-      "parent": 3,
-      "size": 6714
-    },
-    {
-      "id": 7,
-      "name": "database",
-      "type": "database",
-      "url": "https://www.google.com/maps",
-      "parent": 3,
-      "size": 743
-    },
-    {
-      "id": 8,
-      "name": "project 2",
-      "type": "project",
-      "url": "https://www.google.com/maps",
-      "parent": 2
-    },
-    {
-      "id": 9,
-      "name": "dashboard",
-      "type": "dashboard",
-      "url": "https://www.google.com/maps",
-      "parent": 8,
-      "size": 3534
-    },
-    {
-      "id": 10,
-      "name": "script 1",
-      "type": "script",
-      "url": "https://www.google.com/maps",
-      "parent": 8,
-      "size": 5731
-    },
-    {
-      "id": 11,
-      "name": "script 2",
-      "type": "script",
-      "url": "https://www.google.com/maps",
-      "parent": 8,
-      "size": 7840
-    },
-    {
-      "id": 12,
-      "name": "database 1",
-      "type": "database",
-      "url": "https://www.google.com/maps",
-      "parent": 8,
-      "size": 5914
-    },
-    {
-      "id": 13,
-      "name": "database 2",
-      "type": "database",
-      "url": "https://www.google.com/maps",
-      "parent": 8,
-      "size": 3416
-    },
-    {
-      "id": 14,
-      "name": "api",
-      "type": "api",
-      "url": "https://www.google.com/maps",
-      "parent": 11,
-      "size": 5914
-    },
-    {
-      "id": 15,
-      "name": "table 1",
-      "type": "table",
-      "url": "https://www.google.com/maps",
-      "parent": 13,
-      "size": 5914
-    },
-    {
-      "id": 16,
-      "name": "table 2",
-      "type": "table",
-      "url": "https://www.google.com/maps",
-      "parent": 13,
-      "size": 5914
-    }
-],
+      "name": "id_lookup",
+      "source": "source",
       "transform": [
         {
-          "type": "stratify",
-          "key": "id",
-          "parentKey": "parent"
+          "type": "window",
+          "ops": ["row_number"],
+          "as": ["id"]
         },
         {
-          "type": "tree",
-          "method": {"signal": "layout"},
-          "size": [{"signal": "height"}, {"signal": "width - 100"}],
-          "separation": {"signal": "separation"},
-          "as": ["y", "x", "depth", "children"]
+          "type": "formula",
+          "expr": "datum.parent === '' ? null : datum.parent",
+          "as": "parent"
         }
       ]
     },
     {
-      "name": "links",
-      "source": "tree",
+      "name": "parent_lookup",
+      "source": "id_lookup",
       "transform": [
-        { "type": "treelinks" },
         {
-          "type": "linkpath",
-          "orient": "horizontal",
-          "shape": {"signal": "links"}
+          "type": "lookup",
+          "from": "id_lookup",
+          "key": "name",
+          "fields": ["parent"],
+          "values": ["id"],
+          "as": ["parent_id"]
         }
       ]
-    }
-  ],
-
-  "scales": [
-    {
-      "name": "color",
-      "type": "ordinal",
-      "domain": {"data": "tree", "field": "type"},
-      "range": [
-        "#2471A3", "#85C1E9 ", "#52BE80", "#F1C40F", "#F39C12",
-        "#fd8d3c", "#8E44AD"
-      ]
-    }
-  ],
-
-  "marks": [
-    {
-      "type": "path",
-      "from": {"data": "links"},
-      "encode": {
-        "update": {
-          "path": {"field": "path"},
-          "stroke": {"value": "#ccc"}
-        }
-      }
-    },
-    {
-      "type": "symbol",
-      "from": {"data": "tree"},
-      "encode": {
-        "enter": {
-          "size": {"value": 100},
-          "fill": {"scale": "color", "field": "type"}
-
-        },
-        "update": {
-        "tooltip": [
-          {"field": "type", "type": "ordinal"}
-        ],
-        "href": {"field": "url", "type": "nominal"},
-          "x": {"field": "x"},
-          "y": {"field": "y"}
-        }
-      }
-    },
-    {
-      "type": "text",
-      "from": {"data": "tree"},
-      "encode": {
-        "enter": {
-          "text": {"field": "name"},
-          "fontSize": {"value": 9},
-          "baseline": {"value": "middle"}
-        },
-        "update": {
-          "x": {"field": "x"},
-          "y": {"field": "y"},
-          "dx": {"signal": "datum.children ? -7 : 7"},
-          "align": {"signal": "datum.children ? 'right' : 'left'"},
-          "opacity": {"signal": "labels ? 1 : 0"}
-        }
-      }
     }
   ]
 }
