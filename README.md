@@ -21,9 +21,4 @@ Visualizing Data
 | [ColorSpace](https://mycolor.space/)                                                                 | [Data Viz Project](https://datavizproject.com/)                                                   |
 | [Color Thief](https://lokeshdhakar.com/projects/color-thief/)                                        |
 | [Chroma.js](https://gka.github.io/palettes/#/9\|s\|00429d,96ffea,ffffe0\|ffffe0,ff005e,93003a\|1\|1) |
-
-
-
-
-
-
+| [Colormind](http://colormind.io/)                                                                    |
